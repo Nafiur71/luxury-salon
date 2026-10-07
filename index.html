@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxury Salon | Bespoke Hair Studio & Spa</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Custom Modular Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#1E3A2B', // FreshCut Deep Forest Green
+              dark: '#14271D',
+              light: '#2D5640',
+              accent: '#E8F3EE', // Soft Sage Green
+              mint: '#D1E7DD',
+              border: '#E2E8F0',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#F9F9F7] text-gray-900 font-sans antialiased selection:bg-brand selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- 1. TOP ANNOUNCEMENT & CONTACT BAR                                         -->
+  <!-- ========================================================================= -->
+  <div class="bg-brand text-white text-xs py-2.5 px-4">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div class="flex items-center gap-2 text-brand-mint">
+        <i data-lucide="map-pin" class="w-3.5 h-3.5 shrink-0"></i>
+        <span>123 Luxury Boulevard, Suite 100 • Open Today: 9:00 AM – 8:00 PM</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="hidden md:inline text-white/80">✨ Complimentary artisanal coffee & scalp consult with every cut</span>
+        <a href="tel:+15550000000" class="flex items-center gap-1.5 font-semibold text-brand-mint hover:underline">
+          <i data-lucide="phone" class="w-3 h-3"></i>
+          <span>+1 (555) 000-0000</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 2. GLOBAL NAVIGATION HEADER                                               -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-11 h-11 rounded-2xl bg-brand text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+          <i data-lucide="scissors" class="w-5 h-5 rotate-45"></i>
+        </div>
+        <div>
+          <span class="font-display font-extrabold text-2xl tracking-tight text-brand">Luxury Salon</span>
+          <span class="block text-[10px] uppercase font-bold tracking-widest text-gray-400 -mt-1">Hair Studio & Spa</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-gray-600">
+        <a href="#services" class="hover:text-brand transition-colors">Services & Pricing</a>
+        <a href="#stylists" class="hover:text-brand transition-colors">Our Artists</a>
+        <a href="#calendar-preview" class="hover:text-brand transition-colors">Availability</a>
+        <a href="#lookbook" class="hover:text-brand transition-colors">Lookbook</a>
+        <a href="#boutique" class="hover:text-brand transition-colors">Boutique</a>
+        <a href="#reviews" class="hover:text-brand transition-colors">Client Reviews</a>
+        <a href="#location" class="hover:text-brand transition-colors">Location</a>
+      </nav>
+
+      <!-- Action Area -->
+      <div class="flex items-center gap-2.5 sm:gap-3.5">
+        <!-- Shopping Bag Trigger -->
+        <button onclick="toggleCart()" class="relative p-2.5 rounded-xl hover:bg-gray-100 text-gray-700 transition-colors" title="View Bag">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span id="cartCountBadge" class="absolute top-1 right-1 w-4 h-4 bg-brand text-white text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+        </button>
+
+        <!-- Primary Book Online CTA -->
+        <button onclick="openBookingModal()" class="hidden sm:inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-md shadow-brand/20 hover:shadow-lg transition-all active:scale-95">
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+          <span>Book Appointment</span>
+        </button>
+
+        <!-- 3-Dot Mobile & Tablet Menu Button -->
+        <button onclick="toggleMobileMenu()" id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-xl border border-gray-200 hover:bg-gray-100 text-gray-700 transition-colors flex items-center justify-center active:scale-95 shadow-sm" title="Open Navigation Menu">
+          <i data-lucide="more-vertical" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 3. HERO SECTION (Dynamic Action Photo of Barber Cutting Hair)             -->
+  <!-- ========================================================================= -->
+  <section class="relative pt-10 pb-20 md:pt-16 md:pb-28 overflow-hidden bg-gradient-to-b from-[#EDF2EE]/80 via-[#F9F9F7] to-[#F9F9F7]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Hero Copy -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-accent text-brand text-xs font-bold tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-brand animate-pulse"></span>
+            Master Stylists in Action • Real-Time Calendar Booking
+          </div>
+
+          <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-gray-900 leading-[1.12]">
+            Great hair.<br>
+            <span class="text-brand">Elevated you.</span>
+          </h1>
+
+          <p class="text-gray-600 text-lg sm:text-xl max-w-xl leading-relaxed">
+            Welcome to <strong>Luxury Salon</strong>. Experience bespoke grooming, master hair styling, and organic treatments tailored to your personal aesthetic. Select your favorite stylist in just a few taps.
+          </p>
+
+          <!-- Social Proof Chips & Trust Badges -->
+          <div class="flex flex-wrap items-center gap-6 pt-2">
+            <div class="flex items-center gap-3">
+              <div class="flex -space-x-2">
+                <img class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="images/avatar-1.jpg" alt="Client Avatar">
+                <img class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="images/avatar-2.jpg" alt="Client Avatar">
+                <img class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="images/avatar-3.jpg" alt="Client Avatar">
+              </div>
+              <div>
+                <div class="flex text-amber-400 text-xs">
+                  <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                  <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                  <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                  <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                  <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                </div>
+                <p class="text-xs font-bold text-gray-800">4.9 / 5.0 (250+ Verified Reviews)</p>
+              </div>
+            </div>
+
+            <div class="h-8 w-px bg-gray-200 hidden sm:block"></div>
+
+            <div class="flex items-center gap-2 text-xs font-semibold text-gray-600">
+              <i data-lucide="scissors" class="w-4 h-4 text-brand"></i>
+              <span>Artisan Scissor & Color Craft</span>
+            </div>
+          </div>
+
+          <!-- Instant Booking Search Bar -->
+          <div class="bg-white p-4 sm:p-5 rounded-3xl shadow-xl border border-gray-100 max-w-2xl mt-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label class="block text-[11px] font-extrabold uppercase text-gray-400 mb-1">Select Service</label>
+                <select id="heroSelectService" class="w-full bg-gray-50 border border-gray-200 text-gray-800 text-xs font-bold rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-brand">
+                  <option value="Signature Precision Haircut">Signature Haircut ($65)</option>
+                  <option value="Bespoke Beard Sculpt & Hot Towel">Beard Sculpt & Shave ($40)</option>
+                  <option value="Custom Balayage & Tonal Gloss">Custom Balayage ($175)</option>
+                  <option value="Restorative Botanical Scalp Spa">Scalp Detox Treatment ($55)</option>
+                  <option value="Event Blowout & Red Carpet Style">Blowout & Style ($50)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[11px] font-extrabold uppercase text-gray-400 mb-1">Preferred Artist</label>
+                <select id="heroSelectStylist" class="w-full bg-gray-50 border border-gray-200 text-gray-800 text-xs font-bold rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-brand">
+                  <option value="Any Available Stylist">Any Available Artist (Fastest)</option>
+                  <option value="Senior Stylist Alex">Alex (Master Barber & Fades)</option>
+                  <option value="Master Colorist Jordan">Jordan (Balayage & Blondes)</option>
+                  <option value="Artistic Director Sam">Sam (Precision Scissors)</option>
+                </select>
+              </div>
+              <div class="flex items-end">
+                <button onclick="handleHeroInstantBook()" class="w-full bg-brand hover:bg-brand-light text-white py-2.5 px-4 rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all active:scale-95">
+                  <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                  <span>Check Open Slots</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Hero Visual (Barber Actively Cutting Hair) -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            
+            <!-- Hero Image Frame -->
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] bg-gray-900 group">
+              <img src="images/hero-salon.jpg" alt="Master Barber Actively Cutting Hair" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"></div>
+              
+              <div class="absolute bottom-6 left-6 right-6 text-white">
+                <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-[11px] font-bold mb-2">Live In-Chair Craft</span>
+                <h3 class="text-2xl font-bold font-display">Precision Scissor & Fade Artistry</h3>
+                <p class="text-xs text-gray-200 mt-1">Witness master barbers and stylists at work.</p>
+              </div>
+            </div>
+
+            <!-- Floating Artist Card (Alex Styling in Action) -->
+            <div class="absolute -bottom-6 -left-6 bg-white p-3.5 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-3 animate-gentle hidden sm:flex">
+              <img src="images/stylist-alex.jpg" class="w-12 h-12 rounded-full object-cover border-2 border-brand shadow-sm" alt="Stylist Alex In Action">
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <h4 class="font-bold text-sm text-gray-900">Senior Stylist Alex</h4>
+                  <span class="text-[10px] bg-brand-accent text-brand px-1.5 py-0.5 rounded-full font-bold">In Chair</span>
+                </div>
+                <p class="text-xs text-gray-500">Master Barber • 6 yrs exp</p>
+                <div class="flex items-center text-amber-500 text-xs font-bold gap-1 mt-0.5">
+                  <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-400"></i>
+                  <span>4.9 (180+ Reviews)</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 4. SERVICES & PRICING MENU (With Action Thumbnail Badges)                 -->
+  <!-- ========================================================================= -->
+  <section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-widest text-brand">Crafted Menu</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-gray-900 mt-1">Services & Transparent Pricing</h2>
+        </div>
+        <p class="text-gray-500 text-sm max-w-md mt-2 md:mt-0">
+          Every hair appointment includes an individual consultation, luxury hair wash, and professional styling finish.
+        </p>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Service Card 1 -->
+        <div class="group bg-[#F9F9F7] rounded-3xl p-6 border border-gray-200/80 hover:border-brand hover:shadow-xl transition-all duration-300 flex flex-col justify-between salon-card">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <div class="w-14 h-14 rounded-2xl overflow-hidden shadow-sm border border-gray-100 group-hover:scale-105 transition-transform">
+                <img src="images/service-haircut.jpg" alt="Haircut Action" class="w-full h-full object-cover">
+              </div>
+              <div class="text-right">
+                <span class="text-2xl font-extrabold text-brand font-display">$65</span>
+                <span class="block text-xs text-gray-400">45 mins</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Signature Precision Haircut</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Tailored scissor and clipper architecture designed around bone structure. Includes eucalyptus hot towel wrap.
+            </p>
+          </div>
+          <button onclick="openBookingWithService('Signature Precision Haircut', 65)" class="w-full py-2.5 rounded-xl border-2 border-brand text-brand hover:bg-brand hover:text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5">
+            <span>Book on Booker</span>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Service Card 2 -->
+        <div class="group bg-[#F9F9F7] rounded-3xl p-6 border border-gray-200/80 hover:border-brand hover:shadow-xl transition-all duration-300 flex flex-col justify-between salon-card">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <div class="w-14 h-14 rounded-2xl overflow-hidden shadow-sm border border-gray-100 group-hover:scale-105 transition-transform">
+                <img src="images/service-beard.jpg" alt="Beard Sculpt Action" class="w-full h-full object-cover">
+              </div>
+              <div class="text-right">
+                <span class="text-2xl font-extrabold text-brand font-display">$40</span>
+                <span class="block text-xs text-gray-400">30 mins</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Bespoke Beard Sculpt & Shave</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Hot lather shave, straight razor edge lineup, steam towel conditioning, and organic botanical beard oil.
+            </p>
+          </div>
+          <button onclick="openBookingWithService('Bespoke Beard Sculpt & Shave', 40)" class="w-full py-2.5 rounded-xl border-2 border-brand text-brand hover:bg-brand hover:text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5">
+            <span>Book on Booker</span>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Service Card 3 -->
+        <div class="group bg-[#F9F9F7] rounded-3xl p-6 border border-gray-200/80 hover:border-brand hover:shadow-xl transition-all duration-300 flex flex-col justify-between salon-card">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <div class="w-14 h-14 rounded-2xl overflow-hidden shadow-sm border border-gray-100 group-hover:scale-105 transition-transform">
+                <img src="images/service-color.jpg" alt="Balayage Action" class="w-full h-full object-cover">
+              </div>
+              <div class="text-right">
+                <span class="text-2xl font-extrabold text-brand font-display">$175+</span>
+                <span class="block text-xs text-gray-400">120 mins</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Custom Balayage & Tonal Gloss</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Hand-painted dimensional highlights, bond-protecting treatment, and customized pH-balancing gloss tone.
+            </p>
+          </div>
+          <button onclick="openBookingWithService('Custom Balayage & Tonal Gloss', 175)" class="w-full py-2.5 rounded-xl border-2 border-brand text-brand hover:bg-brand hover:text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5">
+            <span>Book on Booker</span>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Service Card 4 -->
+        <div class="group bg-[#F9F9F7] rounded-3xl p-6 border border-gray-200/80 hover:border-brand hover:shadow-xl transition-all duration-300 flex flex-col justify-between salon-card">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <div class="w-14 h-14 rounded-2xl overflow-hidden shadow-sm border border-gray-100 group-hover:scale-105 transition-transform">
+                <img src="images/service-wash.jpg" alt="Scalp Spa Action" class="w-full h-full object-cover">
+              </div>
+              <div class="text-right">
+                <span class="text-2xl font-extrabold text-brand font-display">$55</span>
+                <span class="block text-xs text-gray-400">30 mins</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Restorative Botanical Scalp Spa</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Deep detoxifying tea tree scalp exfoliation, acupressure neck massage, and restorative moisture mask.
+            </p>
+          </div>
+          <button onclick="openBookingWithService('Restorative Botanical Scalp Spa', 55)" class="w-full py-2.5 rounded-xl border-2 border-brand text-brand hover:bg-brand hover:text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5">
+            <span>Book on Booker</span>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Service Card 5 -->
+        <div class="group bg-[#F9F9F7] rounded-3xl p-6 border border-gray-200/80 hover:border-brand hover:shadow-xl transition-all duration-300 flex flex-col justify-between salon-card">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <div class="w-14 h-14 rounded-2xl overflow-hidden shadow-sm border border-gray-100 group-hover:scale-105 transition-transform">
+                <img src="images/service-styling.jpg" alt="Blowout Action" class="w-full h-full object-cover">
+              </div>
+              <div class="text-right">
+                <span class="text-2xl font-extrabold text-brand font-display">$50</span>
+                <span class="block text-xs text-gray-400">40 mins</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Event Blowout & Red Carpet Style</h3>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Silky blowout finish, glamorous loose beach waves, or sleek executive sculpt with high-shine seal.
+            </p>
+          </div>
+          <button onclick="openBookingWithService('Event Blowout & Red Carpet Style', 50)" class="w-full py-2.5 rounded-xl border-2 border-brand text-brand hover:bg-brand hover:text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5">
+            <span>Book on Booker</span>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Service Card 6: VIP Bundle Package -->
+        <div class="group bg-gradient-to-br from-brand to-brand-dark text-white rounded-3xl p-6 shadow-xl flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute -right-8 -bottom-8 w-40 h-40 bg-white/5 rounded-full pointer-events-none"></div>
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="bg-brand-accent text-brand text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Most Requested Bundle</span>
+              <div class="text-right">
+                <span class="text-2xl font-extrabold font-display">$95</span>
+                <span class="block text-xs text-gray-300 line-through">$105 value</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold mb-2">The Executive Grooming Ritual</h3>
+            <p class="text-gray-200 text-sm leading-relaxed mb-4">
+              Signature Precision Cut + Full Beard Sculpt + Detoxifying Scalp Steam Treatment. Complete head-to-beard refinement.
+            </p>
+          </div>
+          <button onclick="openBookingWithService('The Executive Grooming Ritual', 95)" class="w-full py-2.5 rounded-xl bg-white text-brand hover:bg-brand-accent font-bold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-md">
+            <span>Book VIP Ritual</span>
+            <i data-lucide="zap" class="w-4 h-4 fill-brand"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 5. INTERACTIVE LIVE CALENDAR & AVAILABILITY SECTION                       -->
+  <!-- ========================================================================= -->
+  <section id="calendar-preview" class="py-20 bg-[#F9F9F7] border-t border-gray-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase font-extrabold tracking-widest text-brand">Live Schedule</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-gray-900 mt-1">Interactive Studio Calendar</h2>
+        <p class="text-gray-500 text-sm mt-2">
+          Select any date below to inspect live chair availability. Time slots update in real time.
+        </p>
+      </div>
+
+      <!-- Live Calendar Showcase Card -->
+      <div class="max-w-4xl mx-auto bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-gray-100">
+        <div class="grid md:grid-cols-12 gap-8 items-start">
+          
+          <!-- Left: Month Calendar Grid -->
+          <div class="md:col-span-7">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-display font-extrabold text-lg text-gray-900" id="mainCalMonthYear">April 2026</h3>
+              <div class="flex gap-1.5">
+                <button onclick="prevMonth()" class="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-600" title="Previous Month">
+                  <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                </button>
+                <button onclick="nextMonth()" class="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-600" title="Next Month">
+                  <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Day Headers -->
+            <div class="grid grid-cols-7 gap-1 text-center text-[11px] font-bold text-gray-400 mb-2">
+              <div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div><div>SUN</div>
+            </div>
+
+            <!-- Days Grid -->
+            <div id="mainCalDaysGrid" class="grid grid-cols-7 gap-1.5 text-center text-xs">
+              <!-- Dynamically populated via js/calendar.js -->
+            </div>
+          </div>
+
+          <!-- Right: Selected Date & Time Slot Pills -->
+          <div class="md:col-span-5 bg-gray-50 rounded-2xl p-5 border border-gray-100 flex flex-col justify-between h-full">
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <span class="text-xs font-bold uppercase text-gray-400">Available Times</span>
+                <span class="text-xs font-bold text-brand" id="selectedDateLabel">Wednesday, Apr 23</span>
+              </div>
+
+              <!-- Time Categories -->
+              <div class="space-y-3">
+                <div>
+                  <span class="text-[10px] uppercase font-bold text-gray-400 block mb-1.5">Morning</span>
+                  <div class="grid grid-cols-2 gap-2">
+                    <button type="button" onclick="selectPreviewSlot(this, '09:00 AM')" class="cal-time-pill py-2 rounded-xl border border-gray-200 bg-white text-xs font-semibold text-gray-800 hover:border-brand">09:00 AM</button>
+                    <button type="button" onclick="selectPreviewSlot(this, '10:30 AM')" class="cal-time-pill py-2 rounded-xl bg-brand text-white text-xs font-semibold border-brand">10:30 AM</button>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="text-[10px] uppercase font-bold text-gray-400 block mb-1.5">Afternoon</span>
+                  <div class="grid grid-cols-2 gap-2">
+                    <button type="button" onclick="selectPreviewSlot(this, '01:00 PM')" class="cal-time-pill py-2 rounded-xl border border-gray-200 bg-white text-xs font-semibold text-gray-800 hover:border-brand">01:00 PM</button>
+                    <button type="button" onclick="selectPreviewSlot(this, '02:30 PM')" class="cal-time-pill py-2 rounded-xl border border-gray-200 bg-white text-xs font-semibold text-gray-800 hover:border-brand">02:30 PM</button>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="text-[10px] uppercase font-bold text-gray-400 block mb-1.5">Evening</span>
+                  <div class="grid grid-cols-2 gap-2">
+                    <button type="button" onclick="selectPreviewSlot(this, '05:00 PM')" class="cal-time-pill py-2 rounded-xl border border-gray-200 bg-white text-xs font-semibold text-gray-800 hover:border-brand">05:00 PM</button>
+                    <button type="button" onclick="selectPreviewSlot(this, '06:30 PM')" class="cal-time-pill py-2 rounded-xl border border-gray-200 bg-white text-xs font-semibold text-gray-800 hover:border-brand">06:30 PM</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-5 mt-4 border-t border-gray-200/60">
+              <button onclick="openBookingModal()" class="w-full bg-brand hover:bg-brand-light text-white py-2.5 rounded-xl font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2">
+                <i data-lucide="check-circle" class="w-4 h-4"></i>
+                <span>Reserve Selected Time</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 6. MASTER STYLISTS & ARTISTS SHOWCASE (Real Styling In Action)            -->
+  <!-- ========================================================================= -->
+  <section id="stylists" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase font-extrabold tracking-widest text-brand">The Creative Team</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-gray-900 mt-1">Master Stylists & Colorists</h2>
+        <p class="text-gray-500 text-sm mt-2">Certified artists actively practicing precision scissor craft, clippers, and organic hair health.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Stylist 1: Alex (Barber in action) -->
+        <div class="bg-[#F9F9F7] rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between salon-card">
+          <div>
+            <div class="relative rounded-2xl overflow-hidden aspect-square mb-5 bg-gray-900 shadow-md">
+              <img src="images/stylist-alex.jpg" alt="Alex cutting hair in action" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-brand text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider">Top Rated Barber</span>
+            </div>
+            
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-bold text-xl text-gray-900">Senior Stylist Alex</h3>
+              <div class="flex items-center text-amber-500 font-bold text-xs gap-1">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <span>4.9 (180+)</span>
+              </div>
+            </div>
+            
+            <p class="text-xs text-brand font-bold mb-2">Master Barber & Fade Specialist • 6 yrs exp</p>
+            <p class="text-xs text-gray-500 leading-relaxed mb-6">Expert in precision taper fades, textured fringe cuts, executive pompadours, and hot lather straight razor rituals.</p>
+          </div>
+          
+          <button onclick="bookWithStylist('Senior Stylist Alex')" class="w-full py-2.5 bg-brand-accent hover:bg-brand text-brand hover:text-white font-bold text-xs rounded-xl transition-colors">
+            Book with Alex
+          </button>
+        </div>
+
+        <!-- Stylist 2: Jordan (Stylist blow-drying & styling hair in action) -->
+        <div class="bg-[#F9F9F7] rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between salon-card">
+          <div>
+            <div class="relative rounded-2xl overflow-hidden aspect-square mb-5 bg-gray-900 shadow-md">
+              <img src="images/stylist-jordan.jpg" alt="Jordan blow-drying and styling hair in action" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-blue-700 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider">Color & Blowout Lead</span>
+            </div>
+            
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-bold text-xl text-gray-900">Master Colorist Jordan</h3>
+              <div class="flex items-center text-amber-500 font-bold text-xs gap-1">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <span>4.9 (210+)</span>
+              </div>
+            </div>
+            
+            <p class="text-xs text-brand font-bold mb-2">Balayage & Dimensional Blondes • 8 yrs exp</p>
+            <p class="text-xs text-gray-500 leading-relaxed mb-6">Specializing in seamless sun-kissed balayage, grey blending transitions, corrective color transformations, and gloss toners.</p>
+          </div>
+          
+          <button onclick="bookWithStylist('Master Colorist Jordan')" class="w-full py-2.5 bg-brand-accent hover:bg-brand text-brand hover:text-white font-bold text-xs rounded-xl transition-colors">
+            Book with Jordan
+          </button>
+        </div>
+
+        <!-- Stylist 3: Sam (Scissor craft in action) -->
+        <div class="bg-[#F9F9F7] rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between salon-card">
+          <div>
+            <div class="relative rounded-2xl overflow-hidden aspect-square mb-5 bg-gray-900 shadow-md">
+              <img src="images/stylist-sam.jpg" alt="Sam performing scissor cutting in action" class="w-full h-full object-cover">
+              <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider">Artistic Director</span>
+            </div>
+            
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="font-bold text-xl text-gray-900">Artistic Director Sam</h3>
+              <div class="flex items-center text-amber-500 font-bold text-xs gap-1">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <span>4.8 (145+)</span>
+              </div>
+            </div>
+            
+            <p class="text-xs text-brand font-bold mb-2">Editorial Scissor Sculpt & Scalp Wellness • 5 yrs exp</p>
+            <p class="text-xs text-gray-500 leading-relaxed mb-6">Master of dry-cutting techniques, curly hair shapes, holistic scalp detox therapies, and effortless red carpet finishing.</p>
+          </div>
+          
+          <button onclick="bookWithStylist('Artistic Director Sam')" class="w-full py-2.5 bg-brand-accent hover:bg-brand text-brand hover:text-white font-bold text-xs rounded-xl transition-colors">
+            Book with Sam
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 7. INTERACTIVE "BEFORE & AFTER" TRANSFORMATION SLIDER                     -->
+  <!-- ========================================================================= -->
+  <section id="lookbook" class="py-20 bg-[#F9F9F7] border-t border-gray-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Text description -->
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-xs uppercase font-extrabold tracking-widest text-brand">Authentic Craft</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-gray-900">Before & After Lookbook</h2>
+          <p class="text-gray-600 leading-relaxed">
+            Drag the interactive handle left and right to inspect the subtle scissor artistry and tonal balancing achieved in our studio chairs.
+          </p>
+
+          <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-3">
+            <div class="flex justify-between items-center text-xs">
+              <span class="text-gray-400 font-bold uppercase">Transformation</span>
+              <span class="font-bold text-gray-900">Modern Textured Crop & Beard Lineup</span>
+            </div>
+            <div class="flex justify-between items-center text-xs">
+              <span class="text-gray-400 font-bold uppercase">Lead Artist</span>
+              <span class="font-bold text-brand">Senior Stylist Alex</span>
+            </div>
+            <div class="flex justify-between items-center text-xs">
+              <span class="text-gray-400 font-bold uppercase">Products Used</span>
+              <span class="font-bold text-gray-900">Botanical Matte Clay & Cedarwood Oil</span>
+            </div>
+          </div>
+
+          <button onclick="openBookingWithService('Signature Precision Haircut', 65)" class="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white px-6 py-3 rounded-full font-bold text-xs shadow-md transition-all">
+            <i data-lucide="scissors" class="w-4 h-4"></i>
+            <span>Book This Transformation</span>
+          </button>
+        </div>
+
+        <!-- Draggable Comparison Slider with Modern Clip-Path -->
+        <div class="lg:col-span-7">
+          <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl comparison-container cursor-ew-resize border-4 border-white" id="sliderContainer">
+            
+            <!-- After Image (Bottom Layer) -->
+            <img src="images/after-transformation.jpg" alt="After Transformation" class="w-full h-full object-cover absolute inset-0 select-none pointer-events-none">
+            <span class="absolute bottom-4 right-4 bg-brand/90 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1.5 rounded-full z-10 pointer-events-none tracking-wider">AFTER</span>
+
+            <!-- Before Image (Top Layer, clipped via CSS) -->
+            <img src="images/before-transformation.jpg" alt="Before Transformation" id="beforeImage" class="w-full h-full object-cover absolute inset-0 z-20 select-none pointer-events-none" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
+            <span class="absolute bottom-4 left-4 bg-black/75 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1.5 rounded-full z-20 pointer-events-none tracking-wider">BEFORE</span>
+
+            <!-- Divider Line & Knob -->
+            <div class="comparison-slider-handle" id="sliderHandle" style="left: 50%;">
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-2xl flex items-center justify-center text-brand">
+                <i data-lucide="chevrons-left-right" class="w-5 h-5"></i>
+              </div>
+            </div>
+          </div>
+          
+          <p class="text-center text-xs text-gray-400 mt-3 flex items-center justify-center gap-1.5">
+            <i data-lucide="move-horizontal" class="w-3.5 h-3.5"></i>
+            <span>Drag slider horizontally to compare haircut lines</span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 8. SIGNATURE BOTANICAL HAIRCARE BOUTIQUE                                  -->
+  <!-- ========================================================================= -->
+  <section id="boutique" class="py-20 bg-white border-t border-gray-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs uppercase font-extrabold tracking-widest text-brand">Studio Boutique</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-gray-900 mt-1">Signature Botanical Collection</h2>
+        </div>
+        <p class="text-gray-500 text-sm max-w-md mt-2 md:mt-0">
+          Professional-grade formulas crafted with organic plant oils, paraben-free hydrators, and sustainable packaging.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Product 1 -->
+        <div class="bg-[#F9F9F7] rounded-3xl p-5 border border-gray-100 shadow-sm flex flex-col justify-between salon-card">
+          <div>
+            <div class="relative rounded-2xl overflow-hidden aspect-square mb-4 bg-white flex items-center justify-center shadow-sm">
+              <img src="images/product-clay.jpg" alt="Matte Texturizing Clay" class="w-full h-full object-cover">
+            </div>
+            <span class="text-[10px] font-extrabold uppercase text-brand bg-brand-accent px-2 py-0.5 rounded-full">Matte Finish</span>
+            <h3 class="font-bold text-gray-900 text-base mt-2">Botanical Texturizing Clay</h3>
+            <p class="text-xs text-gray-500 mt-1">Pliable all-day hold with zero grease. Washes out easily.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-200/60 flex items-center justify-between">
+            <span class="font-display font-extrabold text-lg text-gray-900">$26</span>
+            <button onclick="addToCart('Botanical Texturizing Clay', 26)" class="p-2.5 bg-brand hover:bg-brand-light text-white rounded-xl transition-all shadow-sm" title="Add to bag">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="bg-[#F9F9F7] rounded-3xl p-5 border border-gray-100 shadow-sm flex flex-col justify-between salon-card">
+          <div>
+            <div class="relative rounded-2xl overflow-hidden aspect-square mb-4 bg-white flex items-center justify-center shadow-sm">
+              <img src="images/product-serum.jpg" alt="Argan Hair Oil" class="w-full h-full object-cover">
+            </div>
+            <span class="text-[10px] font-extrabold uppercase text-amber-800 bg-amber-50 px-2 py-0.5 rounded-full">Deep Moisture</span>
+            <h3 class="font-bold text-gray-900 text-base mt-2">Organic Argan Infusion Serum</h3>
+            <p class="text-xs text-gray-500 mt-1">Weightless shine and thermal heat protection against frizz.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-200/60 flex items-center justify-between">
+            <span class="font-display font-extrabold text-lg text-gray-900">$34</span>
+            <button onclick="addToCart('Organic Argan Infusion Serum', 34)" class="p-2.5 bg-brand hover:bg-brand-light text-white rounded-xl transition-all shadow-sm" title="Add to bag">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="bg-[#F9F9F7] rounded-3xl p-5 border border-gray-100 shadow-sm flex flex-col justify-between salon-card">
+          <div>
+            <div class="relative rounded-2xl overflow-hidden aspect-square mb-4 bg-white flex items-center justify-center shadow-sm">
+              <img src="images/product-shampoo.jpg" alt="Tea Tree Scalp Wash" class="w-full h-full object-cover">
+            </div>
+            <span class="text-[10px] font-extrabold uppercase text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full">Scalp Purifying</span>
+            <h3 class="font-bold text-gray-900 text-base mt-2">Clarifying Scalp Wash</h3>
+            <p class="text-xs text-gray-500 mt-1">Invigorating peppermint and tea tree botanicals for root health.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-200/60 flex items-center justify-between">
+            <span class="font-display font-extrabold text-lg text-gray-900">$28</span>
+            <button onclick="addToCart('Clarifying Scalp Wash', 28)" class="p-2.5 bg-brand hover:bg-brand-light text-white rounded-xl transition-all shadow-sm" title="Add to bag">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="bg-[#F9F9F7] rounded-3xl p-5 border border-gray-100 shadow-sm flex flex-col justify-between salon-card">
+          <div>
+            <div class="relative rounded-2xl overflow-hidden aspect-square mb-4 bg-white flex items-center justify-center shadow-sm">
+              <img src="images/product-beardoil.jpg" alt="Beard Conditioning Elixir" class="w-full h-full object-cover">
+            </div>
+            <span class="text-[10px] font-extrabold uppercase text-brand bg-brand-accent px-2 py-0.5 rounded-full">Cedarwood</span>
+            <h3 class="font-bold text-gray-900 text-base mt-2">Nourishing Beard Elixir</h3>
+            <p class="text-xs text-gray-500 mt-1">Softens coarse bristles and calms skin irritation beneath.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-200/60 flex items-center justify-between">
+            <span class="font-display font-extrabold text-lg text-gray-900">$22</span>
+            <button onclick="addToCart('Nourishing Beard Elixir', 22)" class="p-2.5 bg-brand hover:bg-brand-light text-white rounded-xl transition-all shadow-sm" title="Add to bag">
+              <i data-lucide="plus" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 9. CLIENT REVIEWS GRID                                                    -->
+  <!-- ========================================================================= -->
+  <section id="reviews" class="py-20 bg-[#F9F9F7] border-t border-gray-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase font-extrabold tracking-widest text-brand">Customer Trust</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-display text-gray-900 mt-1">Verified Client Reviews</h2>
+        <div class="flex items-center justify-center gap-2 mt-3">
+          <div class="flex text-amber-400">
+            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+            <i data-lucide="star" class="w-5 h-5 fill-amber-400"></i>
+          </div>
+          <span class="font-bold text-gray-900 text-sm">4.9 Star Rating • 250+ Verified Bookings</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Review 1 -->
+        <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm space-y-4 salon-card">
+          <div class="flex text-amber-400">
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed">
+            "The online booking modal was seamless. I picked my exact time slot and received an instant reminder. Alex gave me the cleanest fade I've ever had, and the complimentary espresso during the consult was pure luxury."
+          </p>
+          <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+            <div class="w-10 h-10 rounded-full bg-brand-accent text-brand font-bold flex items-center justify-center text-xs">JD</div>
+            <div>
+              <h4 class="font-bold text-sm text-gray-900">Verified Client • J. Davis</h4>
+              <p class="text-[11px] text-gray-400">Signature Precision Cut & Beard</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm space-y-4 salon-card">
+          <div class="flex text-amber-400">
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed">
+            "Jordan's balayage artistry is next level. She took the time to assess my hair texture and created a dimensional blonde that looks naturally sun-kissed. The studio environment is peaceful, clean, and welcoming."
+          </p>
+          <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+            <div class="w-10 h-10 rounded-full bg-brand-accent text-brand font-bold flex items-center justify-center text-xs">EM</div>
+            <div>
+              <h4 class="font-bold text-sm text-gray-900">Verified Client • E. Miller</h4>
+              <p class="text-[11px] text-gray-400">Custom Balayage & Tonal Gloss</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm space-y-4 salon-card">
+          <div class="flex text-amber-400">
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+          </div>
+          <p class="text-gray-700 text-sm leading-relaxed">
+            "Booked the Executive Grooming Ritual. The tea tree scalp massage relieved a week's worth of stress, and the warm eucalyptus towel finish was fantastic. Truly an elevated barbershop experience."
+          </p>
+          <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+            <div class="w-10 h-10 rounded-full bg-brand-accent text-brand font-bold flex items-center justify-center text-xs">RS</div>
+            <div>
+              <h4 class="font-bold text-sm text-gray-900">Verified Client • R. Sterling</h4>
+              <p class="text-[11px] text-gray-400">Executive Grooming Ritual</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 10. LOCATION, HOURS & INTERACTIVE MAP                                     -->
+  <!-- ========================================================================= -->
+  <section id="location" class="py-20 bg-white border-t border-gray-200/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Info Left -->
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-xs uppercase font-extrabold tracking-widest text-brand">Studio Logistics</span>
+          <h2 class="text-3xl font-extrabold font-display text-gray-900">Location & Hours</h2>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Nestled in the prime district with complimentary underground valet parking, private elevator access, and a relaxing waiting lounge.
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-xl bg-brand-accent text-brand flex items-center justify-center shrink-0">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-gray-900">Studio Address</h4>
+                <p class="text-xs text-gray-600">123 Luxury Boulevard, Suite 100, City Center, State 12345</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-xl bg-brand-accent text-brand flex items-center justify-center shrink-0">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-gray-900">Opening Hours</h4>
+                <p class="text-xs text-gray-600">Monday – Friday: 9:00 AM – 8:00 PM</p>
+                <p class="text-xs text-gray-600">Saturday – Sunday: 10:00 AM – 6:00 PM</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5">
+              <div class="w-10 h-10 rounded-xl bg-brand-accent text-brand flex items-center justify-center shrink-0">
+                <i data-lucide="phone-call" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-gray-900">Direct Inquiries</h4>
+                <p class="text-xs text-gray-600">+1 (555) 000-0000 • concierge@luxurysalon.com</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-3 pt-2">
+            <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 bg-brand text-white hover:bg-brand-light px-5 py-2.5 rounded-xl font-bold text-xs shadow-md transition-all">
+              <i data-lucide="navigation" class="w-4 h-4"></i>
+              <span>Get Directions</span>
+            </a>
+            <a href="tel:+15550000000" class="inline-flex items-center gap-2 bg-white border border-gray-300 hover:bg-gray-50 text-gray-800 px-5 py-2.5 rounded-xl font-bold text-xs transition-all">
+              <i data-lucide="phone" class="w-4 h-4 text-brand"></i>
+              <span>Call Front Desk</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Map Placeholder Right -->
+        <div class="lg:col-span-7 rounded-3xl overflow-hidden shadow-xl border-4 border-white h-[380px] bg-gray-100 relative">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105757.25884976472!2d-118.439775!3d34.062013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bbf3f07a6857%3A0x6a0c0b3d88198f!2sWilshire%20Blvd%2C%20Los%20Angeles%2C%20CA!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            class="w-full h-full">
+          </iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 11. FOOTER                                                                -->
+  <!-- ========================================================================= -->
+  <footer class="bg-brand-dark text-white pt-16 pb-12 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        
+        <!-- Brand Summary -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-white text-brand flex items-center justify-center font-bold">
+              <i data-lucide="scissors" class="w-4 h-4 rotate-45"></i>
+            </div>
+            <span class="font-display font-extrabold text-xl tracking-tight">Luxury Salon</span>
+          </div>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Elevating everyday hair styling and scalp wellness into a bespoke ritual. Certified master stylists, clean botanical formulations, and peaceful design.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-mint mb-4">Explore</h4>
+          <ul class="space-y-2 text-xs text-gray-300">
+            <li><a href="#services" class="hover:text-white transition-colors">Hair Services & Bundles</a></li>
+            <li><a href="#stylists" class="hover:text-white transition-colors">Master Stylist Profiles</a></li>
+            <li><a href="#lookbook" class="hover:text-white transition-colors">Transformation Lookbook</a></li>
+            <li><a href="#boutique" class="hover:text-white transition-colors">Botanical Haircare Shop</a></li>
+          </ul>
+        </div>
+
+        <!-- Booking & Booker Info -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-mint mb-4">Booker Integration</h4>
+          <p class="text-xs text-gray-400 leading-relaxed mb-3">
+            Integrated with Booker by Mindbody for real-time calendar synchronization, automated SMS reminders, and secure payments.
+          </p>
+          <button onclick="openBookingModal()" class="text-xs font-bold text-brand-mint hover:underline flex items-center gap-1">
+            <span>Schedule Online Now</span>
+            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <!-- Social & Newsletter -->
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-brand-mint mb-4">Connect</h4>
+          <p class="text-xs text-gray-400 mb-4">Follow our studio for weekly transformation reels and seasonal promotions.</p>
+          <div class="flex gap-2.5">
+            <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-brand transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+            <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-brand transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+            <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-brand transition-colors"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-4">
+        <p>&copy; 2026 Luxury Salon. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:underline">Privacy Policy</a>
+          <a href="#" class="hover:underline">Terms of Service</a>
+          <a href="#" class="hover:underline">24-Hour Cancellation Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MOBILE BOTTOM APP BAR                                                     -->
+  <!-- ========================================================================= -->
+  <div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 z-30 px-4 py-2 flex justify-around items-center shadow-2xl">
+    <a href="#" class="flex flex-col items-center text-brand">
+      <i data-lucide="home" class="w-5 h-5"></i>
+      <span class="text-[10px] font-bold mt-0.5">Home</span>
+    </a>
+    <button onclick="openBookingModal()" class="flex flex-col items-center text-gray-500 hover:text-brand">
+      <i data-lucide="calendar" class="w-5 h-5"></i>
+      <span class="text-[10px] font-medium mt-0.5">Book</span>
+    </button>
+    <a href="#stylists" class="flex flex-col items-center text-gray-500 hover:text-brand">
+      <i data-lucide="users" class="w-5 h-5"></i>
+      <span class="text-[10px] font-medium mt-0.5">Artists</span>
+    </a>
+    <button onclick="toggleCart()" class="flex flex-col items-center text-gray-500 hover:text-brand relative">
+      <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+      <span class="text-[10px] font-medium mt-0.5">Boutique</span>
+    </button>
+    <button onclick="toggleMobileMenu()" class="flex flex-col items-center text-gray-700 hover:text-brand" title="Open Full Menu">
+      <i data-lucide="more-vertical" class="w-5 h-5"></i>
+      <span class="text-[10px] font-bold mt-0.5">Menu</span>
+    </button>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SEAMLESS BOOKER MODAL (OPTION A)                                          -->
+  <!-- ========================================================================= -->
+  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden border border-gray-100 my-6 animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Modal Top Bar -->
+      <div class="bg-[#F8F9FA] p-5 sm:p-6 border-b border-gray-100 relative">
+        <button onclick="closeBookingModal()" class="absolute top-5 right-5 p-2 rounded-full hover:bg-gray-200 text-gray-400 hover:text-gray-700 transition-colors" title="Close">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-6 h-6 rounded-full bg-brand text-white text-xs font-bold flex items-center justify-center" id="stepCounterBadge">1</span>
+          <h3 class="font-display font-extrabold text-xl text-gray-900" id="stepModalTitle">Select Your Service</h3>
+        </div>
+
+        <!-- 4 Step Pill Tabs -->
+        <div class="grid grid-cols-4 gap-2 text-center text-xs font-bold">
+          <div id="pill-step-1" class="py-1.5 rounded-lg bg-brand text-white">1. Service</div>
+          <div id="pill-step-2" class="py-1.5 rounded-lg bg-gray-200 text-gray-600">2. Artist</div>
+          <div id="pill-step-3" class="py-1.5 rounded-lg bg-gray-200 text-gray-600">3. Calendar</div>
+          <div id="pill-step-4" class="py-1.5 rounded-lg bg-gray-200 text-gray-600">4. Confirm</div>
+        </div>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-5 sm:p-6">
+        
+        <!-- STEP 1: SERVICE SELECTOR (With Action Photos matching Screen 6) -->
+        <div id="modal-step-1" class="space-y-3">
+          <p class="text-xs text-gray-500 font-medium mb-1">Choose a haircut or hair treatment to schedule:</p>
+          
+          <label class="flex items-center justify-between p-3.5 rounded-2xl border-2 border-brand bg-brand-accent/20 cursor-pointer service-select-item" onclick="setServiceInModal('Signature Precision Haircut', 65)">
+            <div class="flex items-center gap-3">
+              <input type="radio" name="modalServiceRadio" value="Signature Precision Haircut" checked class="text-brand focus:ring-brand w-4 h-4">
+              <img src="images/service-haircut.jpg" class="w-12 h-12 rounded-xl object-cover shadow-sm shrink-0" alt="Haircut Action">
+              <div>
+                <span class="font-bold text-gray-900 text-sm block">Signature Precision Haircut</span>
+                <span class="text-xs text-gray-500">Scissor craft & hot towel • 45 min</span>
+              </div>
+            </div>
+            <span class="font-bold text-brand font-display text-base">$65</span>
+          </label>
+
+          <label class="flex items-center justify-between p-3.5 rounded-2xl border-2 border-gray-100 hover:border-gray-300 cursor-pointer service-select-item" onclick="setServiceInModal('Bespoke Beard Sculpt & Shave', 40)">
+            <div class="flex items-center gap-3">
+              <input type="radio" name="modalServiceRadio" value="Bespoke Beard Sculpt & Shave" class="text-brand focus:ring-brand w-4 h-4">
+              <img src="images/service-beard.jpg" class="w-12 h-12 rounded-xl object-cover shadow-sm shrink-0" alt="Beard Sculpt Action">
+              <div>
+                <span class="font-bold text-gray-900 text-sm block">Bespoke Beard Sculpt & Shave</span>
+                <span class="text-xs text-gray-500">Razor edge lineup & steam wrap • 30 min</span>
+              </div>
+            </div>
+            <span class="font-bold text-brand font-display text-base">$40</span>
+          </label>
+
+          <label class="flex items-center justify-between p-3.5 rounded-2xl border-2 border-gray-100 hover:border-gray-300 cursor-pointer service-select-item" onclick="setServiceInModal('Custom Balayage & Tonal Gloss', 175)">
+            <div class="flex items-center gap-3">
+              <input type="radio" name="modalServiceRadio" value="Custom Balayage & Tonal Gloss" class="text-brand focus:ring-brand w-4 h-4">
+              <img src="images/service-color.jpg" class="w-12 h-12 rounded-xl object-cover shadow-sm shrink-0" alt="Balayage Action">
+              <div>
+                <span class="font-bold text-gray-900 text-sm block">Custom Balayage & Tonal Gloss</span>
+                <span class="text-xs text-gray-500">Hand-painted dimensional color • 120 min</span>
+              </div>
+            </div>
+            <span class="font-bold text-brand font-display text-base">$175</span>
+          </label>
+
+          <label class="flex items-center justify-between p-3.5 rounded-2xl border-2 border-gray-100 hover:border-gray-300 cursor-pointer service-select-item" onclick="setServiceInModal('Restorative Botanical Scalp Spa', 55)">
+            <div class="flex items-center gap-3">
+              <input type="radio" name="modalServiceRadio" value="Restorative Botanical Scalp Spa" class="text-brand focus:ring-brand w-4 h-4">
+              <img src="images/service-wash.jpg" class="w-12 h-12 rounded-xl object-cover shadow-sm shrink-0" alt="Scalp Spa Action">
+              <div>
+                <span class="font-bold text-gray-900 text-sm block">Restorative Botanical Scalp Spa</span>
+                <span class="text-xs text-gray-500">Tea tree scalp scrub & massage • 30 min</span>
+              </div>
+            </div>
+            <span class="font-bold text-brand font-display text-base">$55</span>
+          </label>
+        </div>
+
+        <!-- STEP 2: ARTIST SELECTOR (Real In-Action Photos) -->
+        <div id="modal-step-2" class="space-y-3 hidden">
+          <p class="text-xs text-gray-500 font-medium mb-1">Select your preferred stylist or master barber:</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div onclick="setArtistInModal('Senior Stylist Alex')" class="p-3.5 rounded-2xl border-2 border-brand bg-brand-accent/20 cursor-pointer artist-select-item flex items-center gap-3" data-artist="Senior Stylist Alex">
+              <img src="images/stylist-alex.jpg" class="w-12 h-12 rounded-full object-cover shadow-sm" alt="Alex In Action">
+              <div>
+                <h4 class="font-bold text-sm text-gray-900">Senior Stylist Alex</h4>
+                <p class="text-[11px] text-gray-500">Master Barber • ★ 4.9</p>
+              </div>
+            </div>
+
+            <div onclick="setArtistInModal('Master Colorist Jordan')" class="p-3.5 rounded-2xl border-2 border-gray-100 hover:border-gray-300 cursor-pointer artist-select-item flex items-center gap-3" data-artist="Master Colorist Jordan">
+              <img src="images/stylist-jordan.jpg" class="w-12 h-12 rounded-full object-cover shadow-sm" alt="Jordan In Action">
+              <div>
+                <h4 class="font-bold text-sm text-gray-900">Master Colorist Jordan</h4>
+                <p class="text-[11px] text-gray-500">Balayage Pro • ★ 4.9</p>
+              </div>
+            </div>
+
+            <div onclick="setArtistInModal('Artistic Director Sam')" class="p-3.5 rounded-2xl border-2 border-gray-100 hover:border-gray-300 cursor-pointer artist-select-item flex items-center gap-3" data-artist="Artistic Director Sam">
+              <img src="images/stylist-sam.jpg" class="w-12 h-12 rounded-full object-cover shadow-sm" alt="Sam In Action">
+              <div>
+                <h4 class="font-bold text-sm text-gray-900">Artistic Director Sam</h4>
+                <p class="text-[11px] text-gray-500">Scissor Craft • ★ 4.8</p>
+              </div>
+            </div>
+
+            <div onclick="setArtistInModal('Any Available Artist')" class="p-3.5 rounded-2xl border-2 border-gray-100 hover:border-gray-300 cursor-pointer artist-select-item flex items-center gap-3" data-artist="Any Available Artist">
+              <div class="w-12 h-12 rounded-full bg-brand-accent text-brand flex items-center justify-center font-bold text-xs">ANY</div>
+              <div>
+                <h4 class="font-bold text-sm text-gray-900">Any Available Artist</h4>
+                <p class="text-[11px] text-gray-500">Fastest open chair</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: INTERACTIVE CALENDAR & TIME SLOTS -->
+        <div id="modal-step-3" class="space-y-4 hidden">
+          <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100">
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-display font-extrabold text-sm text-gray-900" id="modalCalMonthLabel">April 2026</span>
+              <span class="text-xs font-bold text-brand" id="modalSelectedDateText">Wednesday, Apr 23</span>
+            </div>
+
+            <div class="grid grid-cols-7 gap-1 text-center text-[10px] font-bold text-gray-400 mb-1.5">
+              <div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div><div>S</div>
+            </div>
+
+            <div id="modalCalDaysGrid" class="grid grid-cols-7 gap-1 text-center text-xs">
+              <!-- Dynamically populated via js/calendar.js -->
+            </div>
+          </div>
+
+          <div>
+            <span class="text-xs font-bold uppercase text-gray-400 block mb-2">Available Time Slots for Selected Date</span>
+            <div class="grid grid-cols-3 sm:grid-cols-4 gap-2">
+              <button type="button" onclick="setModalTimeSlot(this, '09:00 AM')" class="modal-time-pill py-2 rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 hover:border-brand">09:00 AM</button>
+              <button type="button" onclick="setModalTimeSlot(this, '09:30 AM')" class="modal-time-pill py-2 rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 hover:border-brand">09:30 AM</button>
+              <button type="button" onclick="setModalTimeSlot(this, '10:30 AM')" class="modal-time-pill py-2 rounded-xl bg-brand text-white font-semibold text-xs border-brand">10:30 AM</button>
+              <button type="button" onclick="setModalTimeSlot(this, '11:00 AM')" class="modal-time-pill py-2 rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 hover:border-brand">11:00 AM</button>
+              <button type="button" onclick="setModalTimeSlot(this, '01:00 PM')" class="modal-time-pill py-2 rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 hover:border-brand">01:00 PM</button>
+              <button type="button" onclick="setModalTimeSlot(this, '02:30 PM')" class="modal-time-pill py-2 rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 hover:border-brand">02:30 PM</button>
+              <button type="button" onclick="setModalTimeSlot(this, '04:00 PM')" class="modal-time-pill py-2 rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 hover:border-brand">04:00 PM</button>
+              <button type="button" onclick="setModalTimeSlot(this, '05:30 PM')" class="modal-time-pill py-2 rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 hover:border-brand">05:30 PM</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4: CLIENT DETAILS & CONFIRMATION -->
+        <div id="modal-step-4" class="space-y-4 hidden">
+          <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-xl bg-brand text-white flex items-center justify-center font-bold">
+                <i data-lucide="scissors" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-gray-900" id="summaryServiceTitle">Signature Precision Haircut</h4>
+                <p class="text-xs text-gray-500" id="summaryArtistTime">With Senior Stylist Alex • Apr 23 at 10:30 AM</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="font-display font-extrabold text-lg text-brand" id="summaryPriceDisplay">$65.00</span>
+              <span class="block text-[10px] text-gray-400">Total Price</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">Your Full Name</label>
+              <input type="text" id="inputClientName" value="Alex Taylor" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs font-medium text-gray-900 outline-none focus:ring-1 focus:ring-brand">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-600 mb-1">Phone (SMS Confirmation)</label>
+              <input type="tel" id="inputClientPhone" value="+1 (555) 234-5678" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs font-medium text-gray-900 outline-none focus:ring-1 focus:ring-brand">
+            </div>
+          </div>
+
+          <div class="p-3.5 rounded-2xl bg-brand-accent/40 border border-brand/20 flex items-start gap-2.5">
+            <i data-lucide="shield-check" class="w-4 h-4 text-brand shrink-0 mt-0.5"></i>
+            <p class="text-xs text-brand leading-relaxed">
+              <strong>Synchronized with Booker by Mindbody:</strong> No deposit required right now. Pay in person upon completion via Apple Pay, Card, or Cash. Automated 24h SMS reminder will be scheduled.
+            </p>
+          </div>
+        </div>
+
+        <!-- SUCCESS CONFIRMATION SCREEN -->
+        <div id="modal-step-success" class="text-center py-6 space-y-4 hidden">
+          <div class="w-16 h-16 bg-brand-accent text-brand rounded-full mx-auto flex items-center justify-center animate-gentle">
+            <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+          </div>
+          <h3 class="font-display font-extrabold text-2xl text-gray-900">Appointment Confirmed!</h3>
+          <p class="text-sm text-gray-600 max-w-md mx-auto" id="modalSuccessSummary">
+            Your chair is reserved with <strong>Senior Stylist Alex</strong> on <strong>Wednesday, Apr 23, 2026 at 10:30 AM</strong>.
+          </p>
+          
+          <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 max-w-sm mx-auto text-left text-xs space-y-2">
+            <div class="flex justify-between">
+              <span class="text-gray-500">Booking Reference:</span>
+              <span class="font-bold text-brand">#LX-94820</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-500">SMS Reminder:</span>
+              <span class="font-bold text-gray-800">Scheduled to +1 (555) 234-5678</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-gray-500">Status:</span>
+              <span class="font-bold text-emerald-600">Locked in Studio Calendar</span>
+            </div>
+          </div>
+
+          <button onclick="closeBookingModal()" class="bg-brand text-white px-8 py-3 rounded-full font-bold text-xs shadow-md hover:bg-brand-light transition-all">
+            Done & Return to Studio
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Modal Bottom Navigation Controls -->
+      <div id="modalFooterNav" class="bg-[#F8F9FA] px-6 py-4 border-t border-gray-100 flex justify-between items-center">
+        <button id="btnModalPrev" onclick="modalPrevStep()" class="text-gray-500 hover:text-gray-800 font-bold text-xs flex items-center gap-1 opacity-0 pointer-events-none transition-opacity">
+          <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          <span>Previous</span>
+        </button>
+        <button id="btnModalNext" onclick="modalNextStep()" class="bg-brand hover:bg-brand-light text-white px-6 py-2.5 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-md transition-all active:scale-95">
+          <span>Continue</span>
+          <i data-lucide="chevron-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MOBILE 3-DOT SLIDE-OVER NAVIGATION DRAWER                                 -->
+  <!-- ========================================================================= -->
+  <div id="mobileMenuDrawer" class="fixed inset-0 z-50 overflow-hidden hidden" role="dialog" aria-modal="true">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleMobileMenu()"></div>
+    
+    <!-- Drawer Panel -->
+    <div class="absolute inset-y-0 right-0 max-w-full flex pl-8">
+      <div class="w-screen max-w-sm bg-white shadow-2xl flex flex-col justify-between overflow-y-auto">
+        
+        <div>
+          <!-- Drawer Header -->
+          <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-[#F8F9FA]">
+            <div class="flex items-center gap-2.5">
+              <div class="w-9 h-9 rounded-xl bg-brand text-white flex items-center justify-center shadow-sm">
+                <i data-lucide="scissors" class="w-4 h-4 rotate-45"></i>
+              </div>
+              <div>
+                <span class="font-display font-black text-base text-brand leading-none block">Luxury Salon</span>
+                <span class="text-[9px] uppercase font-bold tracking-wider text-gray-400">Hair Studio & Spa</span>
+              </div>
+            </div>
+            <button onclick="toggleMobileMenu()" class="p-2 rounded-xl bg-white border border-gray-200 text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-colors" title="Close Menu">
+              <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+          </div>
+
+          <!-- Navigation Links List -->
+          <nav class="p-5 space-y-1">
+            <div class="text-[10px] uppercase font-extrabold tracking-wider text-gray-400 px-3 py-2">Quick Navigation</div>
+            
+            <a href="#services" onclick="toggleMobileMenu()" class="flex items-center justify-between p-3 rounded-2xl text-gray-700 hover:text-brand hover:bg-brand-accent/20 font-semibold text-sm transition-colors group">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-gray-100 group-hover:bg-brand group-hover:text-white flex items-center justify-center text-gray-600 transition-colors">
+                  <i data-lucide="scissors" class="w-4 h-4"></i>
+                </div>
+                <span>Services & Pricing</span>
+              </div>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:text-brand transition-colors"></i>
+            </a>
+
+            <a href="#stylists" onclick="toggleMobileMenu()" class="flex items-center justify-between p-3 rounded-2xl text-gray-700 hover:text-brand hover:bg-brand-accent/20 font-semibold text-sm transition-colors group">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-gray-100 group-hover:bg-brand group-hover:text-white flex items-center justify-center text-gray-600 transition-colors">
+                  <i data-lucide="users" class="w-4 h-4"></i>
+                </div>
+                <span>Our Artists</span>
+              </div>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:text-brand transition-colors"></i>
+            </a>
+
+            <a href="#calendar-preview" onclick="toggleMobileMenu()" class="flex items-center justify-between p-3 rounded-2xl text-gray-700 hover:text-brand hover:bg-brand-accent/20 font-semibold text-sm transition-colors group">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-gray-100 group-hover:bg-brand group-hover:text-white flex items-center justify-center text-gray-600 transition-colors">
+                  <i data-lucide="calendar" class="w-4 h-4"></i>
+                </div>
+                <span>Studio Availability</span>
+              </div>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:text-brand transition-colors"></i>
+            </a>
+
+            <a href="#lookbook" onclick="toggleMobileMenu()" class="flex items-center justify-between p-3 rounded-2xl text-gray-700 hover:text-brand hover:bg-brand-accent/20 font-semibold text-sm transition-colors group">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-gray-100 group-hover:bg-brand group-hover:text-white flex items-center justify-center text-gray-600 transition-colors">
+                  <i data-lucide="sparkles" class="w-4 h-4"></i>
+                </div>
+                <span>Transformation Lookbook</span>
+              </div>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:text-brand transition-colors"></i>
+            </a>
+
+            <a href="#boutique" onclick="toggleMobileMenu()" class="flex items-center justify-between p-3 rounded-2xl text-gray-700 hover:text-brand hover:bg-brand-accent/20 font-semibold text-sm transition-colors group">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-gray-100 group-hover:bg-brand group-hover:text-white flex items-center justify-center text-gray-600 transition-colors">
+                  <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                </div>
+                <span>Botanical Boutique</span>
+              </div>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:text-brand transition-colors"></i>
+            </a>
+
+            <a href="#reviews" onclick="toggleMobileMenu()" class="flex items-center justify-between p-3 rounded-2xl text-gray-700 hover:text-brand hover:bg-brand-accent/20 font-semibold text-sm transition-colors group">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-gray-100 group-hover:bg-brand group-hover:text-white flex items-center justify-center text-gray-600 transition-colors">
+                  <i data-lucide="star" class="w-4 h-4"></i>
+                </div>
+                <span>Client Reviews</span>
+              </div>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:text-brand transition-colors"></i>
+            </a>
+
+            <a href="#location" onclick="toggleMobileMenu()" class="flex items-center justify-between p-3 rounded-2xl text-gray-700 hover:text-brand hover:bg-brand-accent/20 font-semibold text-sm transition-colors group">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-gray-100 group-hover:bg-brand group-hover:text-white flex items-center justify-center text-gray-600 transition-colors">
+                  <i data-lucide="map-pin" class="w-4 h-4"></i>
+                </div>
+                <span>Location & Hours</span>
+              </div>
+              <i data-lucide="chevron-right" class="w-4 h-4 text-gray-400 group-hover:text-brand transition-colors"></i>
+            </a>
+          </nav>
+        </div>
+
+        <!-- Drawer Action Footer -->
+        <div class="p-5 border-t border-gray-100 bg-[#F8F9FA] space-y-3">
+          <button onclick="toggleMobileMenu(); openBookingModal();" class="w-full bg-brand hover:bg-brand-light text-white py-3 rounded-full font-bold text-xs shadow-md shadow-brand/20 flex items-center justify-center gap-2 transition-all active:scale-95">
+            <i data-lucide="calendar" class="w-4 h-4"></i>
+            <span>Book Appointment Online</span>
+          </button>
+          
+          <a href="tel:+15550000000" class="w-full border border-gray-200 bg-white hover:bg-gray-50 text-gray-800 py-2.5 rounded-full font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+            <i data-lucide="phone" class="w-3.5 h-3.5 text-brand"></i>
+            <span>Call +1 (555) 000-0000</span>
+          </a>
+
+          <div class="text-center pt-1">
+            <span class="text-[10px] text-gray-400">Open Mon–Sat: 9:00 AM – 8:00 PM</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- SLIDE-OVER HAIRCARE SHOPPING CART DRAWER                                  -->
+  <!-- ========================================================================= -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="toggleCart()"></div>
+    <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between">
+        
+        <!-- Cart Drawer Header -->
+        <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <i data-lucide="shopping-bag" class="w-5 h-5 text-brand"></i>
+            <h3 class="font-display font-extrabold text-lg text-gray-900">Your Boutique Bag</h3>
+          </div>
+          <button onclick="toggleCart()" class="p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Items Container -->
+        <div class="p-6 overflow-y-auto flex-1 space-y-4" id="cartItemsContainer">
+          <div class="text-center py-16 text-gray-400">
+            <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto stroke-1 mb-2"></i>
+            <p class="text-sm font-medium">Your bag is currently empty.</p>
+            <p class="text-xs text-gray-400 mt-1">Explore our Botanical Haircare collection!</p>
+          </div>
+        </div>
+
+        <!-- Cart Summary & Checkout -->
+        <div class="p-6 border-t border-gray-100 bg-[#F8F9FA] space-y-4">
+          <div class="flex justify-between items-center text-sm">
+            <span class="text-gray-500">Subtotal:</span>
+            <span class="font-extrabold font-display text-gray-900 text-lg" id="cartSubtotalText">$0.00</span>
+          </div>
+          <p class="text-[11px] text-gray-400">Complimentary in-salon pickup or fast domestic shipping.</p>
+          <button onclick="alert('Order received! In production, this completes checkout via Stripe or Booker.')" class="w-full bg-brand hover:bg-brand-light text-white py-3 rounded-full font-bold text-xs shadow-md transition-all">
+            Proceed to Checkout
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODULAR JAVASCRIPT MODULES                                                -->
+  <!-- ========================================================================= -->
+  <script src="js/calendar.js"></script>
+  <script src="js/booking.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

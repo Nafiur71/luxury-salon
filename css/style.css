@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Luxury Salon — Pure, Modern & Clean Custom Stylesheet
+   ========================================================================== */
+
+/* Modern Subtle Page Background & Smooth Rendering */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #F9F9F7;
+  color: #1A1F1C;
+}
+
+/* Interactive Before & After comparison slider using modern CSS clip-path */
+.comparison-container {
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.comparison-slider-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background: #FFFFFF;
+  z-index: 30;
+  cursor: ew-resize;
+  transform: translateX(-50%);
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.45);
+}
+
+/* Hide scrollbars for pill horizontal containers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Gentle floating animation for floating card badges */
+@keyframes gentleBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-gentle {
+  animation: gentleBounce 4s ease-in-out infinite;
+}
+
+/* Subtle modern card hover enhancement */
+.salon-card {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+}
+
+.salon-card:hover {
+  transform: translateY(-4px);
+}
