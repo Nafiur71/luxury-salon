@@ -7,6 +7,9 @@ function toggleMobileMenu() {
   const drawer = document.getElementById('mobileMenuDrawer');
   if (drawer) {
     drawer.classList.toggle('hidden');
+    if (typeof updateBodyScrollLock === 'function') {
+      updateBodyScrollLock();
+    }
     if (window.lucide) {
       lucide.createIcons();
     }
@@ -34,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCartBag();
   }
 
-  // 5. Global Escape key handler to close modals & drawers
+  // 5. Global Escape key handler to close modals & drawers cleanly
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       const mobileDrawer = document.getElementById('mobileMenuDrawer');
@@ -48,6 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const bookingModal = document.getElementById('bookingModal');
       if (bookingModal && !bookingModal.classList.contains('hidden')) {
         bookingModal.classList.add('hidden');
+      }
+      if (typeof updateBodyScrollLock === 'function') {
+        updateBodyScrollLock();
       }
     }
   });

@@ -1,11 +1,14 @@
 /**
  * Luxury Salon — Calendar Controller Module
- * Handles monthly grid rendering, date selection, and time slot updates.
+ * Handles monthly grid rendering, date selection, boundary validation, and time slot updates.
  */
 
 let currentCalMonth = 3; // 0-indexed: April = 3
 let currentCalYear = 2026;
 let selectedDay = 23;
+
+const baseCalMonth = 3;
+const baseCalYear = 2026;
 
 const monthNames = [
   "January", "February", "March", "April", "May", "June",
@@ -38,6 +41,18 @@ function renderCalendars() {
     modalGrid.innerHTML = generateDaysHTML(true);
   }
 
+  // Update Prev Month buttons states (disable if at current baseline)
+  const isAtBase = (currentCalYear === baseCalYear && currentCalMonth === baseCalMonth);
+  document.querySelectorAll('.btn-cal-prev').forEach(btn => {
+    if (isAtBase) {
+      btn.classList.add('opacity-40', 'cursor-not-allowed');
+      btn.setAttribute('disabled', 'true');
+    } else {
+      btn.classList.remove('opacity-40', 'cursor-not-allowed');
+      btn.removeAttribute('disabled');
+    }
+  });
+
   if (window.lucide) {
     lucide.createIcons();
   }
@@ -61,14 +76,14 @@ function generateDaysHTML(isModal) {
   // Day buttons
   for (let day = 1; day <= daysInMonth; day++) {
     const isSelected = (day === selectedDay);
-    const isPast = (day < 15 && currentCalMonth === 3 && currentCalYear === 2026);
+    const isPast = (currentCalYear === baseCalYear && currentCalMonth === baseCalMonth && day < 15);
 
     if (isPast) {
-      html += `<div class="py-2 text-gray-300 font-medium">${day}</div>`;
+      html += `<div class="py-2 text-gray-300 font-medium select-none cursor-not-allowed">${day}</div>`;
     } else if (isSelected) {
-      html += `<button type="button" onclick="handleDatePick(${day})" class="py-2 rounded-xl bg-brand text-white font-bold shadow-sm transition-transform active:scale-95">${day}</button>`;
+      html += `<button type="button" onclick="handleDatePick(${day})" class="py-2 rounded-xl bg-brand text-white font-bold shadow-sm transition-transform active:scale-95" aria-current="date" aria-label="${day} ${monthNames[currentCalMonth]} selected">${day}</button>`;
     } else {
-      html += `<button type="button" onclick="handleDatePick(${day})" class="py-2 rounded-xl hover:bg-brand-accent/50 text-gray-700 font-semibold transition-colors">${day}</button>`;
+      html += `<button type="button" onclick="handleDatePick(${day})" class="py-2 rounded-xl hover:bg-brand-accent/50 text-gray-700 font-semibold transition-colors" aria-label="${day} ${monthNames[currentCalMonth]}">${day}</button>`;
     }
   }
 
@@ -82,47 +97,81 @@ function handleDatePick(day) {
   selectedDay = day;
   const d = new Date(currentCalYear, currentCalMonth, day);
   const dayName = dayNames[d.getDay()];
+  const formattedDate = `${dayName}, ${monthNames[currentCalMonth].substring(0, 3)} ${day}`;
   
   if (window.studioBooking) {
-    window.studioBooking.date = `${dayName}, ${monthNames[currentCalMonth].substring(0, 3)} ${day}`;
+    window.studioBooking.date = formattedDate;
   }
 
   const selectedDateLabel = document.getElementById('selectedDateLabel');
   if (selectedDateLabel) {
-    selectedDateLabel.innerText = `${dayName}, ${monthNames[currentCalMonth].substring(0, 3)} ${day}`;
+    selectedDateLabel.innerText = formattedDate;
   }
 
   const modalSelectedDateText = document.getElementById('modalSelectedDateText');
   if (modalSelectedDateText) {
-    modalSelectedDateText.innerText = `${dayName}, ${monthNames[currentCalMonth].substring(0, 3)} ${day}`;
+    modalSelectedDateText.innerText = formattedDate;
   }
 
   renderCalendars();
 }
 
 /**
- * Previous Month Navigation
+ * Previous Month Navigation with boundary check
  */
 function prevMonth() {
+  if (currentCalYear === baseCalYear && currentCalMonth <= baseCalMonth) {
+    return; // Cannot go before baseline month
+  }
+
   if (currentCalMonth > 0) {
     currentCalMonth--;
   } else {
     currentCalMonth = 11;
     currentCalYear--;
   }
-  renderCalendars();
+
+  syncDateOnMonthChange();
 }
 
 /**
  * Next Month Navigation
  */
 function nextMonth() {
+  // Allow up to 6 months into the future
   if (currentCalMonth < 11) {
     currentCalMonth++;
   } else {
     currentCalMonth = 0;
     currentCalYear++;
   }
+
+  syncDateOnMonthChange();
+}
+
+function syncDateOnMonthChange() {
+  const daysInMonth = new Date(currentCalYear, currentCalMonth + 1, 0).getDate();
+  if (selectedDay > daysInMonth) {
+    selectedDay = daysInMonth;
+  }
+  const d = new Date(currentCalYear, currentCalMonth, selectedDay);
+  const dayName = dayNames[d.getDay()];
+  const formattedDate = `${dayName}, ${monthNames[currentCalMonth].substring(0, 3)} ${selectedDay}`;
+
+  if (window.studioBooking) {
+    window.studioBooking.date = formattedDate;
+  }
+
+  const selectedDateLabel = document.getElementById('selectedDateLabel');
+  if (selectedDateLabel) {
+    selectedDateLabel.innerText = formattedDate;
+  }
+
+  const modalSelectedDateText = document.getElementById('modalSelectedDateText');
+  if (modalSelectedDateText) {
+    modalSelectedDateText.innerText = formattedDate;
+  }
+
   renderCalendars();
 }
 

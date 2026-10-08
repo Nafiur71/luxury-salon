@@ -1,6 +1,6 @@
 /**
  * Luxury Salon — 4-Step Booking Modal Controller (Option A)
- * Manages appointment states, Booker flow, and step progression.
+ * Manages appointment states, Booker flow, step progression, and form validation.
  */
 
 window.studioBooking = {
@@ -12,25 +12,54 @@ window.studioBooking = {
   time: '10:30 AM'
 };
 
+const servicePriceMap = {
+  'Signature Precision Haircut': 65,
+  'Bespoke Beard Sculpt & Shave': 40,
+  'Custom Balayage & Tonal Gloss': 175,
+  'Restorative Botanical Scalp Spa': 55,
+  'Event Blowout & Red Carpet Style': 50,
+  'The Executive Grooming Ritual': 95
+};
+
+function updateBodyScrollLock() {
+  const modal = document.getElementById('bookingModal');
+  const cart = document.getElementById('cartDrawer');
+  const menu = document.getElementById('mobileMenuDrawer');
+
+  const isModalOpen = modal && !modal.classList.contains('hidden');
+  const isCartOpen = cart && !cart.classList.contains('hidden');
+  const isMenuOpen = menu && !menu.classList.contains('hidden');
+
+  if (isModalOpen || isCartOpen || isMenuOpen) {
+    document.body.classList.add('overflow-hidden');
+  } else {
+    document.body.classList.remove('overflow-hidden');
+  }
+}
+
 function openBookingModal() {
   window.studioBooking.step = 1;
   updateModalUI();
   const modal = document.getElementById('bookingModal');
   if (modal) modal.classList.remove('hidden');
+  updateBodyScrollLock();
 }
 
 function closeBookingModal() {
   const modal = document.getElementById('bookingModal');
   if (modal) modal.classList.add('hidden');
+  updateBodyScrollLock();
 }
 
 function openBookingWithService(serviceName, price) {
   window.studioBooking.service = serviceName;
-  window.studioBooking.price = price;
+  window.studioBooking.price = price || servicePriceMap[serviceName] || 65;
   window.studioBooking.step = 2; // Jump directly to artist choice
+  setServiceInModal(serviceName, window.studioBooking.price);
   updateModalUI();
   const modal = document.getElementById('bookingModal');
   if (modal) modal.classList.remove('hidden');
+  updateBodyScrollLock();
 }
 
 function bookWithStylist(stylistName) {
@@ -40,27 +69,38 @@ function bookWithStylist(stylistName) {
   updateModalUI();
   const modal = document.getElementById('bookingModal');
   if (modal) modal.classList.remove('hidden');
+  updateBodyScrollLock();
 }
 
 function handleHeroInstantBook() {
   const serviceSel = document.getElementById('heroSelectService');
   const stylistSel = document.getElementById('heroSelectStylist');
+  
   if (serviceSel) {
     const opt = serviceSel.options[serviceSel.selectedIndex];
-    window.studioBooking.service = opt.value;
+    const sName = opt.value;
+    const sPrice = parseInt(opt.getAttribute('data-price')) || servicePriceMap[sName] || 65;
+    window.studioBooking.service = sName;
+    window.studioBooking.price = sPrice;
+    setServiceInModal(sName, sPrice);
   }
+  
   if (stylistSel) {
-    window.studioBooking.artist = stylistSel.value;
+    const aName = stylistSel.value;
+    window.studioBooking.artist = aName;
+    setArtistInModal(aName);
   }
+  
   window.studioBooking.step = 3; // Jump straight to calendar
   updateModalUI();
   const modal = document.getElementById('bookingModal');
   if (modal) modal.classList.remove('hidden');
+  updateBodyScrollLock();
 }
 
 function setServiceInModal(name, price) {
   window.studioBooking.service = name;
-  window.studioBooking.price = price;
+  window.studioBooking.price = price || servicePriceMap[name] || 65;
   
   // Update radio buttons and highlight border
   document.querySelectorAll('.service-select-item').forEach(label => {
@@ -104,12 +144,52 @@ function modalNextStep() {
     window.studioBooking.step++;
     updateModalUI();
   } else if (window.studioBooking.step === 4) {
+    // Form Validation
+    const nameInput = document.getElementById('inputClientName');
+    const phoneInput = document.getElementById('inputClientPhone');
+    const clientName = nameInput ? nameInput.value.trim() : '';
+    const clientPhone = phoneInput ? phoneInput.value.trim() : '';
+
+    let hasError = false;
+    if (!clientName) {
+      if (nameInput) {
+        nameInput.focus();
+        nameInput.classList.add('border-red-500', 'ring-2', 'ring-red-400');
+      }
+      hasError = true;
+    } else if (nameInput) {
+      nameInput.classList.remove('border-red-500', 'ring-2', 'ring-red-400');
+    }
+
+    if (!clientPhone || clientPhone.length < 7) {
+      if (phoneInput && !hasError) {
+        phoneInput.focus();
+      }
+      if (phoneInput) {
+        phoneInput.classList.add('border-red-500', 'ring-2', 'ring-red-400');
+      }
+      hasError = true;
+    } else if (phoneInput) {
+      phoneInput.classList.remove('border-red-500', 'ring-2', 'ring-red-400');
+    }
+
+    if (hasError) return;
+
     // Show confirmation screen
     document.getElementById('modal-step-4').classList.add('hidden');
     document.getElementById('modalFooterNav').classList.add('hidden');
     document.getElementById('modal-step-success').classList.remove('hidden');
     document.getElementById('stepModalTitle').innerText = 'Appointment Locked';
-    document.getElementById('modalSuccessSummary').innerHTML = `Your chair is reserved with <strong>${window.studioBooking.artist}</strong> for <strong>${window.studioBooking.service}</strong> on <strong>${window.studioBooking.date}, 2026 at ${window.studioBooking.time}</strong>.`;
+
+    const refCode = '#LX-' + Math.floor(10000 + Math.random() * 90000);
+    const refEl = document.getElementById('successBookingRef');
+    if (refEl) refEl.innerText = refCode;
+
+    const smsEl = document.getElementById('successSmsPhone');
+    if (smsEl) smsEl.innerText = `Scheduled to ${clientPhone}`;
+
+    document.getElementById('modalSuccessSummary').innerHTML = `Dear <strong>${clientName}</strong>, your chair is reserved with <strong>${window.studioBooking.artist}</strong> for <strong>${window.studioBooking.service}</strong> ($${window.studioBooking.price}.00) on <strong>${window.studioBooking.date}, 2026 at ${window.studioBooking.time}</strong>.`;
+    
     if (window.lucide) lucide.createIcons();
   }
 }
@@ -161,7 +241,7 @@ function updateModalUI() {
     }
   }
 
-  // Next Button Label
+  // Next Button Label & Review Summary
   const btnNext = document.getElementById('btnModalNext');
   if (btnNext) {
     if (window.studioBooking.step === 4) {

@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Luxury Salon | Bespoke Hair Studio & Spa</title>
+  <meta name="description" content="Luxury Salon — Experience bespoke grooming, precision scissor craft, master balayage, and botanical hair wellness. Real-time chair calendar booking.">
+  <meta name="keywords" content="luxury salon, haircut, balayage, master barber, styling, scalp spa, organic haircare, appointment booking">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Luxury Salon | Bespoke Hair Studio & Spa">
+  <meta property="og:description" content="Experience bespoke grooming, master hair styling, and organic botanical hair wellness. Reserve your appointment online.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="images/hero-salon.jpg">
+
+  <!-- Favicon (SVG Scissors Icon) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E3A2B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='6' cy='6' r='3'/><circle cx='6' cy='18' r='3'/><line x1='20' y1='4' x2='8.12' y2='15.88'/><line x1='14.47' y1='14.48' x2='20' y2='20'/><line x1='8.12' y1='8.12' x2='12' y2='12'/></svg>">
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -170,17 +181,17 @@
               <div>
                 <label class="block text-[11px] font-extrabold uppercase text-gray-400 mb-1">Select Service</label>
                 <select id="heroSelectService" class="w-full bg-gray-50 border border-gray-200 text-gray-800 text-xs font-bold rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-brand">
-                  <option value="Signature Precision Haircut">Signature Haircut ($65)</option>
-                  <option value="Bespoke Beard Sculpt & Hot Towel">Beard Sculpt & Shave ($40)</option>
-                  <option value="Custom Balayage & Tonal Gloss">Custom Balayage ($175)</option>
-                  <option value="Restorative Botanical Scalp Spa">Scalp Detox Treatment ($55)</option>
-                  <option value="Event Blowout & Red Carpet Style">Blowout & Style ($50)</option>
+                  <option value="Signature Precision Haircut" data-price="65">Signature Haircut ($65)</option>
+                  <option value="Bespoke Beard Sculpt & Shave" data-price="40">Beard Sculpt & Shave ($40)</option>
+                  <option value="Custom Balayage & Tonal Gloss" data-price="175">Custom Balayage ($175)</option>
+                  <option value="Restorative Botanical Scalp Spa" data-price="55">Scalp Detox Treatment ($55)</option>
+                  <option value="Event Blowout & Red Carpet Style" data-price="50">Blowout & Style ($50)</option>
                 </select>
               </div>
               <div>
                 <label class="block text-[11px] font-extrabold uppercase text-gray-400 mb-1">Preferred Artist</label>
                 <select id="heroSelectStylist" class="w-full bg-gray-50 border border-gray-200 text-gray-800 text-xs font-bold rounded-xl px-3 py-2.5 outline-none focus:ring-2 focus:ring-brand">
-                  <option value="Any Available Stylist">Any Available Artist (Fastest)</option>
+                  <option value="Any Available Artist">Any Available Artist (Fastest)</option>
                   <option value="Senior Stylist Alex">Alex (Master Barber & Fades)</option>
                   <option value="Master Colorist Jordan">Jordan (Balayage & Blondes)</option>
                   <option value="Artistic Director Sam">Sam (Precision Scissors)</option>
@@ -418,7 +429,7 @@
             <div class="flex items-center justify-between mb-4">
               <h3 class="font-display font-extrabold text-lg text-gray-900" id="mainCalMonthYear">April 2026</h3>
               <div class="flex gap-1.5">
-                <button onclick="prevMonth()" class="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-600" title="Previous Month">
+                <button onclick="prevMonth()" class="btn-cal-prev p-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-600 transition-opacity" title="Previous Month" aria-label="Previous Month">
                   <i data-lucide="chevron-left" class="w-4 h-4"></i>
                 </button>
                 <button onclick="nextMonth()" class="p-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 text-gray-600" title="Next Month">
@@ -620,7 +631,7 @@
 
         <!-- Draggable Comparison Slider with Modern Clip-Path -->
         <div class="lg:col-span-7">
-          <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl comparison-container cursor-ew-resize border-4 border-white" id="sliderContainer">
+          <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl comparison-container cursor-ew-resize border-4 border-white focus:outline-none focus:ring-2 focus:ring-brand" id="sliderContainer" role="slider" tabindex="0" aria-label="Before and after transformation comparison slider. Use left and right arrow keys to adjust." aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
             
             <!-- After Image (Bottom Layer) -->
             <img src="images/after-transformation.jpg" alt="After Transformation" class="w-full h-full object-cover absolute inset-0 select-none pointer-events-none">
@@ -881,7 +892,7 @@
           </div>
 
           <div class="flex gap-3 pt-2">
-            <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-2 bg-brand text-white hover:bg-brand-light px-5 py-2.5 rounded-xl font-bold text-xs shadow-md transition-all">
+            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand text-white hover:bg-brand-light px-5 py-2.5 rounded-xl font-bold text-xs shadow-md transition-all">
               <i data-lucide="navigation" class="w-4 h-4"></i>
               <span>Get Directions</span>
             </a>
@@ -913,7 +924,7 @@
   <!-- ========================================================================= -->
   <!-- 11. FOOTER                                                                -->
   <!-- ========================================================================= -->
-  <footer class="bg-brand-dark text-white pt-16 pb-12 border-t border-white/10">
+  <footer class="bg-brand-dark text-white pt-16 pb-24 lg:pb-12 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
         
@@ -958,9 +969,9 @@
           <h4 class="text-xs font-bold uppercase tracking-wider text-brand-mint mb-4">Connect</h4>
           <p class="text-xs text-gray-400 mb-4">Follow our studio for weekly transformation reels and seasonal promotions.</p>
           <div class="flex gap-2.5">
-            <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-brand transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-            <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-brand transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
-            <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-brand transition-colors"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+            <a href="javascript:void(0)" aria-label="Luxury Salon Instagram" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-brand transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+            <a href="javascript:void(0)" aria-label="Luxury Salon Facebook" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-brand transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+            <a href="javascript:void(0)" aria-label="Luxury Salon YouTube" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-brand transition-colors"><i data-lucide="youtube" class="w-4 h-4"></i></a>
           </div>
         </div>
 
@@ -969,9 +980,9 @@
       <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-4">
         <p>&copy; 2026 Luxury Salon. All rights reserved.</p>
         <div class="flex gap-6">
-          <a href="#" class="hover:underline">Privacy Policy</a>
-          <a href="#" class="hover:underline">Terms of Service</a>
-          <a href="#" class="hover:underline">24-Hour Cancellation Policy</a>
+          <a href="javascript:void(0)" onclick="alert('Privacy Notice: Luxury Salon respects your data and never shares personal contact details with third parties.')" class="hover:underline">Privacy Policy</a>
+          <a href="javascript:void(0)" onclick="alert('Terms of Service: All services include complimentary consultation and styling finish.')" class="hover:underline">Terms of Service</a>
+          <a href="javascript:void(0)" onclick="alert('Cancellation Policy: We request at least 24 hours notice for rescheduling or cancellation.')" class="hover:underline">24-Hour Cancellation Policy</a>
         </div>
       </div>
     </div>
@@ -1176,12 +1187,12 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-bold text-gray-600 mb-1">Your Full Name</label>
-              <input type="text" id="inputClientName" value="Alex Taylor" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs font-medium text-gray-900 outline-none focus:ring-1 focus:ring-brand">
+              <label for="inputClientName" class="block text-xs font-bold text-gray-600 mb-1">Your Full Name <span class="text-red-500">*</span></label>
+              <input type="text" id="inputClientName" value="Alex Taylor" required placeholder="Enter full name" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs font-medium text-gray-900 outline-none focus:ring-1 focus:ring-brand transition-colors">
             </div>
             <div>
-              <label class="block text-xs font-bold text-gray-600 mb-1">Phone (SMS Confirmation)</label>
-              <input type="tel" id="inputClientPhone" value="+1 (555) 234-5678" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs font-medium text-gray-900 outline-none focus:ring-1 focus:ring-brand">
+              <label for="inputClientPhone" class="block text-xs font-bold text-gray-600 mb-1">Phone (SMS Confirmation) <span class="text-red-500">*</span></label>
+              <input type="tel" id="inputClientPhone" value="+1 (555) 234-5678" required placeholder="+1 (555) 000-0000" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 text-xs font-medium text-gray-900 outline-none focus:ring-1 focus:ring-brand transition-colors">
             </div>
           </div>
 
@@ -1206,11 +1217,11 @@
           <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100 max-w-sm mx-auto text-left text-xs space-y-2">
             <div class="flex justify-between">
               <span class="text-gray-500">Booking Reference:</span>
-              <span class="font-bold text-brand">#LX-94820</span>
+              <span class="font-bold text-brand" id="successBookingRef">#LX-94820</span>
             </div>
             <div class="flex justify-between">
               <span class="text-gray-500">SMS Reminder:</span>
-              <span class="font-bold text-gray-800">Scheduled to +1 (555) 234-5678</span>
+              <span class="font-bold text-gray-800" id="successSmsPhone">Scheduled to +1 (555) 234-5678</span>
             </div>
             <div class="flex justify-between">
               <span class="text-gray-500">Status:</span>
@@ -1379,7 +1390,7 @@
             <i data-lucide="shopping-bag" class="w-5 h-5 text-brand"></i>
             <h3 class="font-display font-extrabold text-lg text-gray-900">Your Boutique Bag</h3>
           </div>
-          <button onclick="toggleCart()" class="p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700">
+          <button onclick="toggleCart()" class="p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700" aria-label="Close Shopping Bag" title="Close Shopping Bag">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
         </div>
@@ -1400,7 +1411,7 @@
             <span class="font-extrabold font-display text-gray-900 text-lg" id="cartSubtotalText">$0.00</span>
           </div>
           <p class="text-[11px] text-gray-400">Complimentary in-salon pickup or fast domestic shipping.</p>
-          <button onclick="alert('Order received! In production, this completes checkout via Stripe or Booker.')" class="w-full bg-brand hover:bg-brand-light text-white py-3 rounded-full font-bold text-xs shadow-md transition-all">
+          <button onclick="handleCheckout()" class="w-full bg-brand hover:bg-brand-light text-white py-3 rounded-full font-bold text-xs shadow-md transition-all active:scale-95">
             Proceed to Checkout
           </button>
         </div>
